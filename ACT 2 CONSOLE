@@ -9,7 +9,5 @@ cLength = Convert.ToInt32(length);
 yards = cLength / 91;
 double feet = cLength / 30;
 double inches = cLength / 2.54;
-Console.Write(yards + " yards, ");
-Console.Write(feet + " feet (foot), ");
 cInches = Convert.ToInt32(inches);
-Console.Write(cInches + " inches");
+Console.Write(yards + " yards, "+ feet + " feet (foot), "+ cInches + " inches");
