@@ -1,13 +1,14 @@
-//declaration
-String length;
-int cLength, yards, cInches;
+// Declaration
+        string length;
+        int cLength, yards, remainingCm, feet, cInches;
 
-//output
-Console.Write("Enter length (in centimeters) >>>>>>>");
-length = Console.ReadLine();
-cLength = Convert.ToInt32(length);
-yards = cLength / 91;
-double feet = cLength / 30;
-double inches = cLength / 2.54;
-cInches = Convert.ToInt32(inches);
-Console.Write(yards + " yards, "+ feet + " feet (foot), "+ cInches + " inches");
+        Console.Write("Enter length (in centimeters) >>>>>>>");
+        length = Console.ReadLine();
+        
+        cLength = Convert.ToInt32(length);
+        yards = cLength / 91;
+        remainingCm = cLength % 91;
+        feet = remainingCm / 30;
+        cInches = (int)((remainingCm % 30) / 2.54);
+// Output
+        Console.Write(yards + " yards, " + feet + " feet (foot), " + cInches + " inches");
