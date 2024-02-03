@@ -6,7 +6,7 @@ double tCost = (52*5.50) + (lp*2) + mp + sp;
 //output
 Console.WriteLine("Number of bags ordered: 52");
 Console.WriteLine("Box used: ");
-Console.WriteLine("Large:"+lrg);
-Console.WriteLine("Medium: "+md);
-Console.WriteLine("Small: "+sm);
-Console.WriteLine("Your total cost is: $"+tCost.toString("N2"));
+Console.WriteLine("Large- "+lrg);
+Console.WriteLine("Medium- "+md);
+Console.WriteLine("Small- "+sm);
+Console.WriteLine("Your total cost is: $"+tCost.ToString("N2"));
