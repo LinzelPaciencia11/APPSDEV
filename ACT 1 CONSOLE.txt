@@ -9,4 +9,4 @@ Console.WriteLine("Box used: ");
 Console.WriteLine("Large:"+lrg);
 Console.WriteLine("Medium: "+md);
 Console.WriteLine("Small: "+sm);
-Console.WriteLine("Your total cost is: $"+tCost.toString(N2));
+Console.WriteLine("Your total cost is: $"+tCost.toString("N2"));
