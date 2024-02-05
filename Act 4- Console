@@ -6,9 +6,8 @@
         
         if(price> 1000){
             discount = price*discountRate;
-            Console.WriteLine(discount.ToString("N2"));
+            Console.WriteLine("Discount is: "+discount.ToString("N2"));
         }
         else{
             Console.WriteLine("No Discount");
         }
-  
