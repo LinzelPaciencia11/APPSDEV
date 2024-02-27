@@ -1,0 +1,23 @@
+ double[] num = new double[8];
+        for (int i = 0; i < 8; i++) 
+        {   //enter an array of 8 ka input
+            Console.Write("Enter the score of judge [" + (i + 1) + "]: ");
+            num[i] = Convert.ToDouble(Console.ReadLine()); //string to double 
+        }
+        //sort (remove highest and lowest)
+        Array.Sort(num);
+        Console.Write("Sorted: ");
+        for (int i = 1; i < 7; i++) 
+        {
+            Console.Write(num[i] + " ");
+        }
+        //(highest + lowest)- the rest value
+        double total = 0;
+        for (int i = 1; i < 7; i++) 
+        {
+            total += num[i];
+        }
+
+        Console.WriteLine("\nTotal: " + total.ToString("N2"));
+
+        Console.ReadKey();
