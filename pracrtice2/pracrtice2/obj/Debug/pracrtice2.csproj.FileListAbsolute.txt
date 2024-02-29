@@ -1,0 +1,11 @@
+C:\Users\user\source\repos\pracrtice2\pracrtice2\bin\Debug\pracrtice2.exe.config
+C:\Users\user\source\repos\pracrtice2\pracrtice2\bin\Debug\pracrtice2.exe
+C:\Users\user\source\repos\pracrtice2\pracrtice2\bin\Debug\pracrtice2.pdb
+C:\Users\user\source\repos\pracrtice2\pracrtice2\obj\Debug\pracrtice2.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\pracrtice2\pracrtice2\obj\Debug\pracrtice2.Form1.resources
+C:\Users\user\source\repos\pracrtice2\pracrtice2\obj\Debug\pracrtice2.Properties.Resources.resources
+C:\Users\user\source\repos\pracrtice2\pracrtice2\obj\Debug\pracrtice2.csproj.GenerateResource.cache
+C:\Users\user\source\repos\pracrtice2\pracrtice2\obj\Debug\pracrtice2.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\pracrtice2\pracrtice2\obj\Debug\pracrtice2.exe
+C:\Users\user\source\repos\pracrtice2\pracrtice2\obj\Debug\pracrtice2.pdb
+C:\Users\user\source\repos\pracrtice2\pracrtice2\obj\Debug\pracrtice2.Commission.resources
