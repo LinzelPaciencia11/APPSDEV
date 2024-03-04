@@ -1,0 +1,58 @@
+using System;
+
+namespace Home
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double homePrice = InputValues("Enter the price of the home: ");
+            double interestRate = InputValues("Enter the current interest rate (in percentage): ");
+            double downPaymentPercentage = InputValues("Enter the percentage of the total price made as down payment: ");
+
+            double downPayment = DownPayment(homePrice, downPaymentPercentage);
+            double financedAmount = FinancedAmount(homePrice, downPayment);
+            double monthlyPayment = MonthlyPayment(financedAmount, interestRate);
+            double totalInterest = TotalInterest(financedAmount, monthlyPayment);
+
+            Display(downPayment, totalInterest);
+        }
+
+        static double InputValues(string prompt)
+        {
+            Console.Write(prompt);
+            return Convert.ToDouble(Console.ReadLine());
+        }
+
+        static double DownPayment(double homePrice, double downPaymentPercentage)
+        {
+            return homePrice * (downPaymentPercentage / 100);
+        }
+
+        static double FinancedAmount(double homePrice, double downPayment)
+        {
+            return homePrice - downPayment;
+        }
+
+        static double MonthlyPayment(double financedAmount, double interestRate)
+        {
+            double monthlyInterestRate = interestRate / 1200; // Divide by 12 months and 100 to convert to percentage
+            int numberOfPayments = 30 * 12; // 30 years * 12 months
+            double monthlyPayment = (financedAmount * monthlyInterestRate) / (1 - Math.Pow(1 + monthlyInterestRate, -numberOfPayments));
+            return monthlyPayment;
+        }
+
+        static double TotalInterest(double financedAmount, double monthlyPayment)
+        {
+            int numberOfPayments = 30 * 12; // 30 years * 12 months
+            double totalPayment = monthlyPayment * numberOfPayments;
+            return totalPayment - financedAmount;
+        }
+
+        static void Display(double downPayment, double totalInterest)
+        {
+            Console.WriteLine($"Down Payment: ${downPayment:F2}");
+            Console.WriteLine($"Total Interest Paid Over 30 Years: ${totalInterest:F2}");
+        }
+    }
+}
