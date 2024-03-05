@@ -6,20 +6,25 @@ namespace Home
     {
         static void Main(string[] args)
         {
-            Console.Write("Price of Home>> ");
-            double homePrice = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Interest Rate>> ");
-            double interestRate =Convert.ToDouble(Console.ReadLine());
-            Console.Write("Percent as Down Payment>> ");
-            double downPaymentPercentage =Convert.ToDouble(Console.ReadLine());
+
+
+            double homePrice = InputValues("Price of Home>> ");
+            double interestRate = InputValues("Interest Rate>> ");
+            double downPaymentPercentage = InputValues("Enter the percent as Down Payment>> ");
+
 
             double downPayment = DownPayment(homePrice, downPaymentPercentage);
             double financedAmount = FinancedAmount(homePrice, downPayment);
             double monthlyPayment = MonthlyPayment(financedAmount, interestRate);
             double totalInterest = TotalInterest(financedAmount, monthlyPayment);
-
             Display(downPayment, monthlyPayment, financedAmount, totalInterest);
 
+        }
+
+        static double InputValues(string prompt)
+        {
+            Console.Write(prompt);
+            return Convert.ToDouble(Console.ReadLine());
         }
 
         static double DownPayment(double homePrice, double downPaymentPercentage)
