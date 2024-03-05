@@ -6,16 +6,17 @@ namespace Home
     {
         static void Main(string[] args)
         {
-            double homePrice = InputValues("Enter the price of the home: ");
-            double interestRate = InputValues("Enter the current interest rate (in percentage): ");
-            double downPaymentPercentage = InputValues("Enter the percentage of the total price made as down payment: ");
+            double homePrice = InputValues("Price of Home>> ");
+            double interestRate = InputValues("Interest Rate>> ");
+            double downPaymentPercentage = InputValues("Percent as Down Payment>> ");
 
             double downPayment = DownPayment(homePrice, downPaymentPercentage);
             double financedAmount = FinancedAmount(homePrice, downPayment);
             double monthlyPayment = MonthlyPayment(financedAmount, interestRate);
             double totalInterest = TotalInterest(financedAmount, monthlyPayment);
 
-            Display(downPayment, totalInterest);
+            Display(downPayment, monthlyPayment, financedAmount, totalInterest);
+
         }
 
         static double InputValues(string prompt)
@@ -49,10 +50,13 @@ namespace Home
             return totalPayment - financedAmount;
         }
 
-        static void Display(double downPayment, double totalInterest)
-        {
-            Console.WriteLine($"Down Payment: ${downPayment:F2}");
-            Console.WriteLine($"Total Interest Paid Over 30 Years: ${totalInterest:F2}");
-        }
+        static void Display(double downPayment, double monthlyPayment,double financedAmount,double totalInterest)
+{
+    Console.WriteLine($"Down Payment: ${downPayment:F2}");
+    Console.WriteLine($"Amount financed: ${financedAmount:F2}");
+    Console.WriteLine($"Monthly Payment: ${monthlyPayment:F2}");
+    Console.WriteLine($"Total Interest: ${totalInterest:F2}");
+}
+
     }
 }
