@@ -21,6 +21,7 @@ class Calculator
                 case '/':
                 case '^':
                     accumulator = DoNextOperation(accumulator, operation, operand);
+                    Console.WriteLine($"The result so far is {accumulator}");
                     break;
                 case 'q':
                 case 'Q':
@@ -30,8 +31,6 @@ class Calculator
                     Console.WriteLine("Invalid operator.");
                     break;
             }
-
-            Console.WriteLine($"The result so far is {accumulator}");
         }
 
         Console.WriteLine($"Final result is {accumulator}");
