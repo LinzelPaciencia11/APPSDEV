@@ -16,7 +16,7 @@ namespace Home
             double downPayment = DownPayment(homePrice, downPaymentPercentage);
             double financedAmount = FinancedAmount(homePrice, downPayment);
             double monthlyPayment = MonthlyPayment(financedAmount, interestRate);
-            double totalInterest = TotalInterest(financedAmount, monthlyPayment);
+            double totalInterest = TotalInterest(homePrice, monthlyPayment);
             Display(downPayment, monthlyPayment, financedAmount, totalInterest);
 
         }
@@ -45,11 +45,11 @@ namespace Home
             return monthlyPayment;
         }
 
-        static double TotalInterest(double financedAmount, double monthlyPayment)
+        static double TotalInterest(double homePrice, double monthlyPayment)
         {
             int numberOfPayments = 30 * 12; // 30 years * 12 months
             double totalPayment = monthlyPayment * numberOfPayments;
-            return totalPayment - financedAmount;
+            return totalPayment - homePrice;
         }
 
         static void Display(double downPayment, double monthlyPayment,double financedAmount,double totalInterest)
