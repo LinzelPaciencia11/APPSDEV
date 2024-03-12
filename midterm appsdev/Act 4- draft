@@ -1,0 +1,105 @@
+//main
+using System;
+using System.Windows.Forms;
+
+namespace Hangman
+{
+    public partial class MainForm : Form
+    {
+        private HangmanGame hangmanGame;
+
+        public MainForm()
+        {
+            InitializeComponent();
+            hangmanGame = new HangmanGame();
+            UpdateUI();
+        }
+
+        private void guessButton_Click(object sender, EventArgs e)
+        {
+            char guess = guessTextBox.Text.ToUpper()[0];
+            hangmanGame.MakeGuess(guess);
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            guessedLabel.Text = hangmanGame.GetGuessedString();
+            remainingLabel.Text = $"Remaining Attempts: {hangmanGame.RemainingAttempts}";
+
+            if (hangmanGame.IsGameOver())
+            {
+                if (hangmanGame.IsGameWon())
+                    MessageBox.Show("Congratulations! You won!");
+                else
+                    MessageBox.Show($"You lost! The word was '{hangmanGame.Word}'");
+                hangmanGame.Reset();
+                UpdateUI();
+            }
+        }
+    }
+}
+
+// form 2
+using System;
+
+namespace Hangman
+{
+    public class HangmanGame
+    {
+        private string[] words = { "HELLO", "WORLD", "COMPUTER", "PROGRAMMING", "STACKOVERFLOW" };
+        private string word;
+        private char[] guessed;
+        public int RemainingAttempts { get; private set; }
+        private const int MaxAttempts = 6;
+
+        public HangmanGame()
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            Random random = new Random();
+            word = words[random.Next(words.Length)];
+            guessed = new char[word.Length];
+            for (int i = 0; i < word.Length; i++)
+            {
+                guessed[i] = '*';
+            }
+            RemainingAttempts = MaxAttempts;
+        }
+
+        public void MakeGuess(char guess)
+        {
+            bool found = false;
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (word[i] == guess)
+                {
+                    guessed[i] = guess;
+                    found = true;
+                }
+            }
+            if (!found)
+                RemainingAttempts--;
+        }
+
+        public bool IsGameOver()
+        {
+            return RemainingAttempts <= 0 || !Array.Exists(guessed, c => c == '*');
+        }
+
+        public bool IsGameWon()
+        {
+            return Array.Exists(guessed, c => c == '*') == false;
+        }
+
+        public string GetGuessedString()
+        {
+            return new string(guessed);
+        }
+
+        public string Word => word;
+    }
+}
