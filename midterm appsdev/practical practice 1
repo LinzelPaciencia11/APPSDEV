@@ -1,0 +1,59 @@
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {Console.Write("Enter number 1: ");
+        double Num1 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Enter number 2: ");
+        double Num2 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Enter number 3: ");
+        double Num3 = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter discount: ");
+        double dsc = Convert.ToDouble(Console.ReadLine());
+        
+        double max = GetMaximum(Num1, Num2, Num3);
+            double min = GetMinimum(Num1, Num2, Num3);
+        
+        double addition = Addition(Num1, Num2, Num3);
+        double discount = Discount(addition, dsc);
+        double discountT = DiscountT(addition, discount);
+        
+        
+        display(addition, discount, discountT, max, min);
+    }
+    
+    static double Addition(double Num1, double Num2, double Num3)
+    {
+        return Num1 + Num2 + Num3;
+    }
+    
+    static double Discount(double addition, double dsc)
+    {
+        return addition * (dsc / 100);
+    }
+    
+    static double DiscountT(double addition, double discount)
+    {
+        return addition - discount;
+    }
+    static double GetMaximum(double Num1, double Num2, double Num3)
+        {
+            return Math.Max(Math.Max(Num1, Num2), Num3);
+        }
+
+        static double GetMinimum(double Num1, double Num2, double Num3)
+        {
+            return Math.Min(Math.Min(Num1, Num2), Num3);
+        }
+    
+    static void display(double addition, double discount, double discountT, double max, double min)
+    {
+        Console.WriteLine (" Amount in Total: " + addition.ToString("N2"));
+        Console.Write ("Discount is : " + discount.ToString("N2"));
+        Console.Write(", with a new total of " + discountT.ToString("N2"));
+        Console.WriteLine("Maximum number: "+ max);
+            Console.WriteLine("Minimum number: "+min);
+    }
+}
