@@ -1,0 +1,12 @@
+//declaration
+int lrg = 2, md = 1, sm = 1;
+double lp= 3.00, mp = 2.50, sp = 2.00;
+double tCost = (52*5.50) + (lp*2) + mp + sp;
+
+//output
+Console.WriteLine("Number of bags ordered: 52");
+Console.WriteLine("Box used: ");
+Console.WriteLine("Large- "+lrg);
+Console.WriteLine("Medium- "+md);
+Console.WriteLine("Small- "+sm);
+Console.WriteLine("Your total cost is: $"+tCost.ToString("N2"));
