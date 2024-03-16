@@ -1,105 +1,54 @@
-//main
-using System;
-using System.Windows.Forms;
-
-namespace Hangman
-{
-    public partial class MainForm : Form
-    {
-        private HangmanGame hangmanGame;
-
-        public MainForm()
-        {
-            InitializeComponent();
-            hangmanGame = new HangmanGame();
-            UpdateUI();
-        }
-
-        private void guessButton_Click(object sender, EventArgs e)
-        {
-            char guess = guessTextBox.Text.ToUpper()[0];
-            hangmanGame.MakeGuess(guess);
-            UpdateUI();
-        }
-
-        private void UpdateUI()
-        {
-            guessedLabel.Text = hangmanGame.GetGuessedString();
-            remainingLabel.Text = $"Remaining Attempts: {hangmanGame.RemainingAttempts}";
-
-            if (hangmanGame.IsGameOver())
-            {
-                if (hangmanGame.IsGameWon())
-                    MessageBox.Show("Congratulations! You won!");
-                else
-                    MessageBox.Show($"You lost! The word was '{hangmanGame.Word}'");
-                hangmanGame.Reset();
-                UpdateUI();
-            }
-        }
-    }
-}
-
-// form 2
 using System;
 
-namespace Hangman
+class Program
 {
-    public class HangmanGame
+    static void Main(string[] args)
     {
-        private string[] words = { "HELLO", "WORLD", "COMPUTER", "PROGRAMMING", "STACKOVERFLOW" };
-        private string word;
-        private char[] guessed;
-        public int RemainingAttempts { get; private set; }
-        private const int MaxAttempts = 6;
-
-        public HangmanGame()
+        Console.Write("Enter the word to guess: ");
+        string wordToGuess = Console.ReadLine().ToLower();
+        char[] guessedWord = new char[wordToGuess.Length];
+        for (int i = 0; i < guessedWord.Length; i++)
         {
-            Reset();
+            guessedWord[i] = '*';
         }
 
-        public void Reset()
-        {
-            Random random = new Random();
-            word = words[random.Next(words.Length)];
-            guessed = new char[word.Length];
-            for (int i = 0; i < word.Length; i++)
-            {
-                guessed[i] = '*';
-            }
-            RemainingAttempts = MaxAttempts;
-        }
+        int attemptsLeft = 6;
 
-        public void MakeGuess(char guess)
+        while (attemptsLeft > 0)
         {
-            bool found = false;
-            for (int i = 0; i < word.Length; i++)
+            Console.Write("Enter a letter: ");
+            char guessedLetter = Console.ReadLine().ToLower()[0];
+            bool correctGuess = false;
+
+            for (int i = 0; i < wordToGuess.Length; i++)
             {
-                if (word[i] == guess)
+                if (wordToGuess[i] == guessedLetter)
                 {
-                    guessed[i] = guess;
-                    found = true;
+                    guessedWord[i] = guessedLetter;
+                    correctGuess = true;
                 }
             }
-            if (!found)
-                RemainingAttempts--;
+
+            if (correctGuess)
+            {
+                Console.WriteLine($"Word to guess: {new string(guessedWord)}");
+                Console.WriteLine("Correct guess! Attempts left: " + attemptsLeft);
+                if (Array.IndexOf(guessedWord, '*') == -1)
+                {
+                    Console.WriteLine("You won, you guessed the word correctly!");
+                    break;
+                }
+            }
+            else
+            {
+                attemptsLeft--;
+                Console.WriteLine("Incorrect guess! Attempts left: " + attemptsLeft);
+            }
         }
 
-        public bool IsGameOver()
+        if (attemptsLeft == 0)
         {
-            return RemainingAttempts <= 0 || !Array.Exists(guessed, c => c == '*');
+            Console.WriteLine("You lose! The word was: " + wordToGuess);
         }
-
-        public bool IsGameWon()
-        {
-            return Array.Exists(guessed, c => c == '*') == false;
-        }
-
-        public string GetGuessedString()
-        {
-            return new string(guessed);
-        }
-
-        public string Word => word;
     }
 }
