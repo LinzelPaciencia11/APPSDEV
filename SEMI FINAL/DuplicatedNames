@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DuplicatedName
+{
+    internal class Program
+    {
+        public static int CountDuplicateNames(string[] names)
+        {
+            return names.GroupBy(name => name).Count(group => group.Count() > 1);
+        }
+
+
+        public static int CountConsonants(string name)
+        {
+            return name.Count(character => char.IsLetter(character) && !"aeiou".Contains(character));
+        }
+
+        public static string ReverseName(string name)
+        {
+            return string.Join("", name.Reverse());
+        }
+
+        public static string[] SortAscendingNames(string[] names)
+        {
+            // Use Select to create an array of reversed names and OrderBy to sort them
+            return names.Select(ReverseName).OrderBy(name => name).ToArray();
+        }
+
+        public static string[] SortDescendingNames(string[] names)
+        {
+            // Call the existing SortAscendingNames to get the reversed names
+            string[] reversedNames = SortAscendingNames(names);
+
+            // Reverse the order of the reversed names for descending sort
+            Array.Reverse(reversedNames);
+
+            return reversedNames;
+        }
+
+
+        public static void Main(string[] args)
+        {
+            string[] names = { "James", "Franco", "Franz", "John", "James" };
+
+            // Print the original names (might include extra line breaks)
+            foreach (string name in names)
+            {
+                Console.WriteLine(name);
+            }
+
+            Console.WriteLine(); // Add an extra line break
+
+            int duplicateCount = CountDuplicateNames(names);
+            Console.WriteLine($"There are {duplicateCount+1} Duplicated Names");
+            Console.WriteLine();
+
+            int consonantCount = CountConsonants(names[0]);
+            Console.WriteLine($"There are {consonantCount} Consonant Characters in {names[0]}");
+            Console.WriteLine();
+
+            string reversedName = ReverseName(names[0]);
+            Console.WriteLine($"{reversedName}");
+
+            Console.WriteLine();
+
+            string[] sortedAscendingNames = SortAscendingNames(names);
+            Console.WriteLine("Acsending:");
+            Console.WriteLine(string.Join("\n", sortedAscendingNames));
+
+            Console.WriteLine();
+
+            string[] sortedDescendingNames = SortDescendingNames(names);
+            Console.WriteLine("Descending:");
+            Console.WriteLine(string.Join("\n", sortedDescendingNames));
+
+            Console.ReadKey();
+        }
+    }
+}
